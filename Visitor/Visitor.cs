@@ -4,25 +4,26 @@ using System.Text;
 
 namespace Visitor
 {
-
-    class Client
+    /// <summary>
+    /// клієнт, який використовує відвідувачів
+    /// </summary>
+    class ClientV
     {
-        void Main()
-        {
-            var structure = new ObjectStructure();
-            structure.Add(new ElementA());
-            structure.Add(new ElementB());
-            structure.Accept(new ConcreteVisitor1());
-            structure.Accept(new ConcreteVisitor2());
-        }
     }
 
+    /// <summary>
+    /// інтерфейс користувача, який визначає метод 
+    /// Visit() для кожного об'єкта Element
+    /// </summary>
     abstract class Visitor
     {
         public abstract void VisitElementA(ElementA elemA);
         public abstract void VisitElementB(ElementB elemB);
     }
 
+    /// <summary>
+    /// конкретний клас відвідувача, реалізує інтерфейс, визначений в Visitor.
+    /// </summary>
     class ConcreteVisitor1 : Visitor
     {
         public override void VisitElementA(ElementA elementA)
@@ -34,6 +35,10 @@ namespace Visitor
             elementB.OperationB();
         }
     }
+
+    /// <summary>
+    /// конкретний клас відвідувача, реалізує інтерфейс, визначений в Visitor.
+    /// </summary>
     class ConcreteVisitor2 : Visitor
     {
         public override void VisitElementA(ElementA elementA)
@@ -46,6 +51,11 @@ namespace Visitor
         }
     }
 
+    /// <summary>
+    /// деяка структура, яка зберігає об'єкти Element і 
+    /// надає до них доступ. Це можуть бути і прості списки,
+    /// і складні складові структури у вигляді дерев
+    /// </summary>
     class ObjectStructure
     {
         List<Element> elements = new List<Element>();
@@ -64,12 +74,19 @@ namespace Visitor
         }
     }
 
+    /// <summary>
+    /// визначає метод Accept (), в якому в якості 
+    /// параметра приймається об'єкт Visitor
+    /// </summary>
     abstract class Element
     {
         public abstract void Accept(Visitor visitor);
         public string SomeState { get; set; }
     }
 
+    /// <summary>
+    /// конкретний елемент, який реалізуэ метод Accept()
+    /// </summary>
     class ElementA : Element
     {
         public override void Accept(Visitor visitor)
@@ -80,6 +97,9 @@ namespace Visitor
         { }
     }
 
+    /// <summary>
+    /// конкретний елемент, який реалізуэ метод Accept()
+    /// </summary>
     class ElementB : Element
     {
         public override void Accept(Visitor visitor)

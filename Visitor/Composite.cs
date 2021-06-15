@@ -4,6 +4,15 @@ using System.Text;
 
 namespace Visitor
 {
+    /// <summary>
+    /// клієнт, який використовує компоненти
+    /// </summary>
+    class ClientC
+    {
+    }
+    /// <summary>
+    /// визначає інтерфейс для всіх компонентів в структурі
+    /// </summary>
     abstract class Component
     {
         protected string name;
@@ -17,6 +26,10 @@ namespace Visitor
         public abstract void Add(Component c);
         public abstract void Remove(Component c);
     }
+    /// <summary>
+    /// представляє компонент, який може містити інші компоненти і 
+    /// реалізує механізм для їх додавання і видалення
+    /// </summary>
     class Composite : Component
     {
         List<Component> children = new List<Component>();
@@ -45,6 +58,10 @@ namespace Visitor
             }
         }
     }
+
+    /// <summary>
+    /// представляє окремий компонент, який не може містити інші компоненти
+    /// </summary>
     class Leaf : Component
     {
         public Leaf(string name)
