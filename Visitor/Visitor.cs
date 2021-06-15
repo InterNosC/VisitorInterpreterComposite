@@ -75,7 +75,7 @@ namespace Visitor
     }
 
     /// <summary>
-    /// визначає метод Accept (), в якому в якості 
+    /// визначає метод Accept(), в якому в якості 
     /// параметра приймається об'єкт Visitor
     /// </summary>
     abstract class Element
